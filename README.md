@@ -1,1 +1,162 @@
-"# QuickPDF" 
+<img width="1536" height="1024" alt="banner" src="https://github.com/user-attachments/assets/801b83c8-6a07-4e45-90e0-5db922069cab" />
+
+<div align="center">
+
+# QuickPDF
+
+> PDF tools that respect your privacy — merge and split documents entirely in the browser.
+
+</div>
+
+[![React](https://img.shields.io/badge/React-19-61DAFB?style=flat-square&logo=react&logoColor=black)](https://react.dev/)
+[![Vite](https://img.shields.io/badge/Vite-8-646CFF?style=flat-square&logo=vite&logoColor=white)](https://vite.dev/)
+[![TailwindCSS](https://img.shields.io/badge/Tailwind-4-06B6D4?style=flat-square&logo=tailwindcss&logoColor=white)](https://tailwindcss.com/)
+[![pdf-lib](https://img.shields.io/badge/pdf--lib-1.17-FF0000?style=flat-square)](https://pdf-lib.js.org/)
+[![License: MIT](https://img.shields.io/badge/license-MIT-green?style=flat-square)](LICENSE)
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen?style=flat-square)](https://github.com/jhasourav07/quickpdf/pulls)
+[![Netlify Status](https://api.netlify.com/api/v1/badges/b4fa8a5d-0510-4b09-a5a6-b043ffcf4691/deploy-status)](https://app.netlify.com/projects/quickstpdf/deploys)
+
+**[🚀 Try the Live Demo Here](https://quickstpdf.netlify.app)**
+
+---
+
+Every major PDF tool — Smallpdf, ILovePDF, Adobe Acrobat Online — routes your files through a remote server. You upload a confidential contract, a financial statement, a medical record — and it passes through infrastructure you don't control.
+
+**QuickPDF is different.** It processes everything 100% client-side using `pdf-lib` in the browser. Your files never leave your device. Not for a millisecond. No backend. No uploads. No data liability.
+
+---
+
+## Features
+
+- **Merge PDFs** — Combine unlimited PDFs with drag-and-drop reordering
+- **Split PDFs** — Extract any page range with start/end page precision  
+- **Zero uploads** — All processing happens in-memory in your browser via WebAssembly
+- **No watermarks** — Clean, unbranded output on every export
+- **Instant** — No network round-trips; operations complete in milliseconds
+- **Fully responsive** — Works on desktop, tablet, and mobile
+
+---
+
+## Tech Stack
+
+| Layer | Technology |
+|---|---|
+| UI Framework | React 19 |
+| Build Tool | Vite 8 |
+| PDF Engine | pdf-lib 1.17 (client-side / WASM) |
+| Styling | Tailwind CSS 4 |
+| Animations | Framer Motion 12 |
+| Routing | React Router 7 |
+| Icons | Lucide React |
+
+---
+
+## Getting Started
+
+**Prerequisites:** Node.js v18+
+
+```bash
+# Clone the repo
+git clone https://github.com/jhasourav07/quickpdf.git
+cd quickpdf
+
+# Install dependencies
+npm install
+
+# Start dev server
+npm run dev
+```
+
+Open `http://localhost:5173` in your browser.
+
+```bash
+# Production build
+npm run build
+
+# Preview production build locally
+npm run preview
+```
+
+The `dist/` output is fully static — deploy to Vercel, Netlify, or Cloudflare Pages with zero configuration.
+
+---
+
+## Project Structure
+
+```
+src/
+├── components/
+│   ├── layout/
+│   │   ├── Navbar.jsx              # Sticky top navigation
+│   │   └── PageContainer.jsx       # Page layout wrapper
+│   ├── pdf/
+│   │   └── Dropzone.jsx            # Drag-and-drop file input
+│   └── ui/
+│       ├── AnimatedBackground.jsx  # Mouse-reactive background
+│       └── Button.jsx              # Reusable button component
+├── pages/
+│   ├── Home/                       # Landing page
+│   ├── Merge/                      # Multi-file merge tool
+│   └── Split/                      # Page-range split tool
+├── services/
+│   └── pdf.service.js              # Core PDF logic (merge, split, page count)
+└── utils/
+    └── formatters.js               # File size helpers
+```
+
+---
+
+## How It Works
+
+QuickPDF uses [`pdf-lib`](https://pdf-lib.js.org/) — a pure JavaScript library that runs entirely in the browser with no server dependency.
+
+**Merging**
+
+1. Files are read as `ArrayBuffer` via the browser's native File API
+2. Each PDF is loaded into a `PDFDocument` instance in memory
+3. Pages are copied into a new document in the user-defined drag order
+4. The merged document is serialized and triggered as a browser download — never transmitted anywhere
+
+**Splitting**
+
+1. User uploads a PDF; page count is extracted immediately in-memory
+2. User specifies start and end pages
+3. Only the selected page range is copied into a new `PDFDocument`
+4. Output is downloaded directly — the original file is never modified
+
+---
+
+## Roadmap
+
+- [ ] Compress PDF — reduce file size without quality loss
+- [ ] Rotate pages — per-page rotation controls  
+- [ ] Reorder pages — visual thumbnail drag interface
+- [ ] Add watermark — text or image overlay
+- [ ] PDF metadata editor — title, author, keywords
+- [ ] PDF → Images — export pages as PNG/JPG
+
+---
+
+## Contributing
+
+1. Fork the repository
+2. Create a branch: `git checkout -b feat/your-feature`
+3. Commit your changes: `git commit -m 'feat: add your feature'`
+4. Push: `git push origin feat/your-feature`
+5. Open a Pull Request
+
+Please follow [Conventional Commits](https://www.conventionalcommits.org/) for commit message format.
+
+---
+
+## Security
+
+QuickPDF is architected so that a breach of the application itself **cannot expose user files** — because files are never transmitted. The attack surface is limited entirely to the user's own browser session.
+
+If you discover a vulnerability, please open a [GitHub Security Advisory](https://github.com/jhasourav07/quickpdf/security/advisories/new) rather than a public issue.
+
+---
+
+## License
+
+MIT © [Sourav Jha](https://github.com/jhasourav07)
