@@ -51,6 +51,15 @@ Every major PDF tool — Smallpdf, ILovePDF, Adobe Acrobat Online — routes you
 
 ---
 
+## Screenshots
+
+<img width="1906" height="944" alt="Screenshot 2026-03-26 023302" src="https://github.com/user-attachments/assets/bfb35bf5-e7cb-49ef-8c78-1d8cb55cd762" />
+<img width="1905" height="941" alt="Screenshot 2026-03-26 023335" src="https://github.com/user-attachments/assets/c876a538-22f3-4821-b28c-ce9bd832c55b" />
+<img width="1902" height="944" alt="Screenshot 2026-03-26 023512" src="https://github.com/user-attachments/assets/c9269365-fe15-4080-9433-dfe1cadbb676" />
+<img width="1891" height="923" alt="Screenshot 2026-03-26 023607" src="https://github.com/user-attachments/assets/6ea8d217-9c91-447a-80c2-8a9b328835ef" />
+
+---
+
 ## Getting Started
 
 **Prerequisites:** Node.js v18+
