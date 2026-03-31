@@ -1,4 +1,5 @@
 import { PDFDocument, rgb, degrees, StandardFonts } from "pdf-lib";
+import { encryptPDF } from "@pdfsmaller/pdf-encrypt-lite";
 import * as pdfjsLib from "pdfjs-dist";
 
 // Let Vite point pdf.js at the bundled worker for us.
@@ -356,4 +357,33 @@ export const convertToGrayscale = async (file, onProgress) => {
 
   const pdfBytes = await bwPdf.save();
   return new Blob([pdfBytes], { type: "application/pdf" });
+};
+
+/**
+ * Password-protect a PDF file.
+ * @param {File}   file          - The source PDF
+ * @param {string} userPassword  - Password required to open the document
+ * @param {string} [ownerPassword] - Owner password (defaults to a random token)
+ * @returns {Promise<Blob>}
+ */
+export const lockPdf = async (file, userPassword, ownerPassword) => {
+  if (!file)         throw new Error("No file provided.");
+  if (!userPassword) throw new Error("A password is required.");
+
+  // Load via pdf-lib to ensure the file is a valid, readable PDF.
+  const arrayBuffer = await file.arrayBuffer();
+  const pdfDoc      = await PDFDocument.load(arrayBuffer, { ignoreEncryption: true });
+  const pdfBytes    = await pdfDoc.save();
+
+  // Owner password defaults to a random unguessable string so the user
+  // password is the only way to open the document.
+  const ownerPwd = ownerPassword || crypto.randomUUID();
+
+  const encryptedBytes = await encryptPDF(
+    pdfBytes,
+    userPassword,
+    ownerPwd,
+  );
+
+  return new Blob([encryptedBytes], { type: "application/pdf" });
 };

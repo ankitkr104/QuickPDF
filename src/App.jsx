@@ -17,6 +17,7 @@ import { Organize } from "./pages/Organize/Organize";
 import { PdfToImage } from "./pages/PDFtoImage/PDFtoImage";
 import { Grayscale }   from "./pages/Grayscale/Grayscale";
 import { PageNumbers } from "./pages/PageNumbers/PageNumbers";
+import { LockPdf }     from "./pages/LockPdf/LockPdf";
 
 function App() {
   return (
@@ -37,6 +38,7 @@ function App() {
             <Route path="/pdf-to-image" element={<PdfToImage />} />
             <Route path="/grayscale"    element={<Grayscale />} />
             <Route path="/page-numbers" element={<PageNumbers />} />
+            <Route path="/lock-pdf"     element={<LockPdf />} />
           </Routes>
         </PageContainer>
       </div>

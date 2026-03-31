@@ -13,4 +13,5 @@ export const FREE_LIMITS = {
   pdfToImage: { maxFileSizeMb: 100 },
   grayscale:  { maxFileSizeMb: 100 },
   pageNumbers: { maxFileSizeMb: 100 },
+  lockPdf:     { maxFileSizeMb: 100 },
 };
