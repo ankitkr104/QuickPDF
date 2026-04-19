@@ -1,6 +1,6 @@
 import { describe, it, expect, vi } from 'vitest';
 import { PDFDocument } from 'pdf-lib';
-import { mergePdfs, splitPdf, getPdfPageCount, addWatermark, addPageNumbers } from './pdf.service.js';
+import { mergePdfs, splitPdf, getPdfPageCount, addWatermark, addPageNumbers, rotatePdf, rotatePdfPerPage } from './pdf.service.js';
 
 vi.mock('pdfjs-dist', () => ({
   getDocument: vi.fn(),
@@ -145,5 +145,33 @@ describe('addPageNumbers', () => {
     // Assert: Verify it executes successfully and returns a Blob
     expect(numberedBlob).toBeInstanceOf(Blob);
     expect(numberedBlob.type).toBe('application/pdf');
+  });
+});
+
+describe('rotatePdf', () => {
+  it('should rotate all pages and return a valid PDF Blob', async () => {
+    // Arrange: Create a mock 1-page PDF
+    const file = await createMockPdfFile('rotate-test.pdf', 1);
+    
+    // Act: Rotate by 90 degrees
+    const rotatedBlob = await rotatePdf(file, 90);
+    
+    // Assert: Verify it executes successfully and returns a Blob
+    expect(rotatedBlob).toBeInstanceOf(Blob);
+    expect(rotatedBlob.type).toBe('application/pdf');
+  });
+});
+
+describe('rotatePdfPerPage', () => {
+  it('should rotate specific pages and return a valid PDF Blob', async () => {
+    // Arrange: Create a mock 3-page PDF
+    const file = await createMockPdfFile('rotate-per-page-test.pdf', 3);
+    
+    // Act: Apply different rotations per page [90, 0, -90]
+    const rotatedBlob = await rotatePdfPerPage(file, [90, 0, -90]);
+    
+    // Assert: Verify it executes successfully and returns a Blob
+    expect(rotatedBlob).toBeInstanceOf(Blob);
+    expect(rotatedBlob.type).toBe('application/pdf');
   });
 });
