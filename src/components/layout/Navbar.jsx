@@ -12,7 +12,7 @@ function truncateAddr(addr) {
   return `${addr.slice(0, 6)}…${addr.slice(-4)}`;
 }
 
-function WalletMenu({ address, isPremium, theme }) {
+function WalletMenu({ address, isPremium }) {
   const { disconnect } = useDisconnect();
   const [open, setOpen] = useState(false);
   const [copied, setCopied] = useState(false);
@@ -364,7 +364,7 @@ export function Navbar() {
             </a>
 
             {isConnected && address ? (
-              <WalletMenu address={address} isPremium={isPremium} theme={theme} />
+              <WalletMenu address={address} isPremium={isPremium} />
             ) : (
               <div className="hidden sm:block">
                 <ConnectButton
@@ -420,7 +420,7 @@ export function Navbar() {
 
               <div className="pt-3 mt-3 border-t border-[var(--color-border)]">
                 {isConnected && address ? (
-                  <WalletMenu address={address} isPremium={isPremium} theme={theme} />        
+                  <WalletMenu address={address} isPremium={isPremium} />        
                 ) : (
                   <ConnectButton
                     accountStatus="hidden"
