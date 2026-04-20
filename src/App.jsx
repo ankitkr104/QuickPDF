@@ -25,7 +25,7 @@ import { Admin }       from "./pages/Admin/Admin";
 import { useTheme } from "./hooks/useTheme";
 
 function App() {
-  const { theme } = useTheme();
+  useTheme();
 
   return (
     <div
